@@ -22,7 +22,6 @@ def habla(t):
     except:
         print("NO SE PUDO COMPLETAR LA ACCIÓN")
         
-
 while True:
     tema = input("Introduce tema: ")
     print("RELACIONADOS: ",wikipedia.search(tema))
