@@ -19,7 +19,7 @@ def habla(t):
             tts = gTTS(summ, lang='es')
             tts.save(nom)
     except:
-        print("Va a ser que no...")
+        print("NO SE PUDO COMPLETAR LA ACCIÓN")
         
 
 while True:
@@ -29,4 +29,5 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
         
