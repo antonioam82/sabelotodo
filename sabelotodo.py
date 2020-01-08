@@ -24,7 +24,7 @@ def habla(t):
             print("Generado archivo", nom)
     except:
         print("NO SE PUDO COMPLETAR LA ACCIÓN")
-    print("ARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+    print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
 while True:
     tema = input("Introduce tema: ")
