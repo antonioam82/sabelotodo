@@ -21,7 +21,7 @@ def habla(t):
             direc()
             nom = t+".mp3"
             print("Generando archivo", nom)
-            tts = gTTS(summ, lang='es')
+            tts = gTTS(text, lang='es')
             tts.save(nom)
             print("Generado archivo", nom)
     except:
@@ -34,3 +34,4 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
