@@ -1,6 +1,7 @@
 import wikipedia
 import win32com.client as wc
 from gtts import gTTS
+import re
 from VALID import ns, direc
 
 wikipedia.set_lang('es')
@@ -12,7 +13,8 @@ def habla(t):
         pagina = wikipedia.page(t)
         summ = pagina.summary
         print("\n"+summ+"\n")
-        speak.Speak(summ)
+        text = re.sub("[/[0123456789/]]"," ",summ)
+        speak.Speak(text)
         #GUARDA AUDIO
         aud = ns(input("¿Descarga audio?: ")).lower()
         if aud == "s":
