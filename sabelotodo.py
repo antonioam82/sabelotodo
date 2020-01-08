@@ -11,6 +11,7 @@ def habla(t):
         #REPRODUCE AUDIO
         pagina = wikipedia.page(t)
         summ = pagina.summary
+        print("REPRODUCIENDO")
         speak.Speak(summ)
         #GUARDA AUDIO
         aud = ns(input("¿Descarga audio?: ")).lower()
@@ -20,9 +21,10 @@ def habla(t):
             print("Generando archivo", nom)
             tts = gTTS(summ, lang='es')
             tts.save(nom)
+            print("Generado archivo", nom)
     except:
         print("NO SE PUDO COMPLETAR LA ACCIÓN")
-    print("RELACIONADOS: ",wikipedia.search(tema))
+    print("ARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
 while True:
     tema = input("Introduce tema: ")
