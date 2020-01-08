@@ -11,7 +11,7 @@ def habla(t):
         #REPRODUCE AUDIO
         pagina = wikipedia.page(t)
         summ = pagina.summary
-        print("REPRODUCIENDO")
+        print("\n"+summ+"\n")
         speak.Speak(summ)
         #GUARDA AUDIO
         aud = ns(input("¿Descarga audio?: ")).lower()
@@ -32,4 +32,3 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
-        
