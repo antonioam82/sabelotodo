@@ -14,7 +14,7 @@ def habla(t):
         summ = pagina.summary
         print("\n"+summ+"\n")
         text = re.sub("\[\d+\]"," ",f)
-        speak.Speak(summ)
+        speak.Speak(text)
         #GUARDA AUDIO
         aud = ns(input("¿Descarga audio?: ")).lower()
         if aud == "s":
