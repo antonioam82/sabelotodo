@@ -13,7 +13,7 @@ def habla(t):
         pagina = wikipedia.page(t)
         summ = pagina.summary
         print("\n"+summ+"\n")
-        text = re.sub("\[\d+\]"," ",summ)
+        text = re.sub("\[\d+\]","",summ)
         speak.Speak(text)
         #GUARDA AUDIO
         aud = ns(input("¿Descarga audio?: ")).lower()
