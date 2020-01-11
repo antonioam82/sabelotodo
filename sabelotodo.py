@@ -2,10 +2,12 @@ import wikipedia
 import win32com.client as wc
 from gtts import gTTS
 import re
+import platform
 from VALID import ns, direc
 
 wikipedia.set_lang('es')
 speak=wc.Dispatch("Sapi.SpVoice")
+s = platform.system()
 
 def habla(t):
     if t!="":
@@ -16,9 +18,13 @@ def habla(t):
                 summ = pagina.summary
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]"," ",summ)
-                speak.Speak(text)
+                #text = re.sub("km²","kilometros cuadrados",text)
+                if s == "Windows":
+                    speak.Speak(text)
+                else:
+                    print("\nSONIDO NO DISPONIBLE")
                 #GUARDA AUDIO
-                aud = ns(input("¿Descarga audio?: ")).lower()
+                aud = ns(input("¿Descargar audio?: ")).lower()
                 if aud == "s":
                     direc()
                     nom = t+".mp3"
@@ -38,4 +44,3 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
-        
