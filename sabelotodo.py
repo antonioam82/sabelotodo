@@ -1,5 +1,4 @@
 import wikipedia
-import win32com.client as wc
 from gtts import gTTS
 import re
 import platform
