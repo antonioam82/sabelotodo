@@ -4,9 +4,12 @@ from gtts import gTTS
 import re
 import platform
 from VALID import ns, direc
+s = platform.system()
+if s == "Windows":
+    import win32com.client as wc
+    speak=wc.Dispatch("Sapi.SpVoice")
 
 wikipedia.set_lang('es')
-speak=wc.Dispatch("Sapi.SpVoice")
 s = platform.system()
 
 def habla(t):
@@ -19,10 +22,10 @@ def habla(t):
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]"," ",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)
-                if s == "Windows":
+                try:
                     speak.Speak(text)
-                else:
-                    print("\nSONIDO NO DISPONIBLE")
+                except:
+                    print("SONIDO NO DISPONIBLE")
                 #GUARDA AUDIO
                 aud = ns(input("¿Descargar audio?: ")).lower()
                 if aud == "s":
@@ -44,3 +47,4 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
