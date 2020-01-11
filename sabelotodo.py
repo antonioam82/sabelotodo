@@ -19,8 +19,9 @@ def habla(t):
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
                 print("\n"+summ+"\n")
-                text = re.sub("\[\d+\]"," ",summ)
-                #text = re.sub("km²","kilometros cuadrados",text)
+                text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
+                text = re.sub("\[cita requerida\]","",summ)
                 try:
                     speak.Speak(text)
                 except:
@@ -46,4 +47,5 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
         
