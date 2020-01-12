@@ -9,7 +9,6 @@ if s == "Windows":
     speak=wc.Dispatch("Sapi.SpVoice")
 
 wikipedia.set_lang('es')
-s = platform.system()
 
 def habla(t):
     if t!="":
