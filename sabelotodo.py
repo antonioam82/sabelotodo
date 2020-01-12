@@ -20,7 +20,7 @@ def habla(t):
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
-                text = re.sub("\[cita requerida\]","",summ)
+                text = re.sub("\[cita requerida\]","",text)
                 try:
                     speak.Speak(text)
                 except:
@@ -46,5 +46,4 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
-        
         
