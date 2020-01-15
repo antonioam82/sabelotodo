@@ -2,7 +2,7 @@ import wikipedia
 from gtts import gTTS
 import re
 import platform
-from VALID import ns, direc
+from VALID import ns, direc, OKI
 s = platform.system()
 if s == "Windows":
     import win32com.client as wc
@@ -34,9 +34,19 @@ def habla(t):
                     tts = gTTS(text, lang='es')
                     tts.save(nom)
                     print("Generado archivo", nom)
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
-        print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+            #ERROR DE DESAMBIGUACION
+            posibles_temas = wikipedia.search(t)
+            if len(posibles_temas)>0:
+                print(t,"puede referirse a:")
+                for i,posible_tema in enumerate(posibles_temas):
+                    print(i,posible_tema)
+                eleccion = OKI(input("Introduzca opcion: "))
+                assert eleccion in range(len(posibles_temas))
+                habla(posibles_temas[eleccion])
+            
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
         
