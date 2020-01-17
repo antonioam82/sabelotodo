@@ -38,6 +38,7 @@ def habla(t):
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             #ERROR DE DESAMBIGUACION
+            print("********DESAMBIGUACIÓN********")
             posibles_temas = wikipedia.search(t)
             if len(posibles_temas)>0:
                 print(t,"puede referirse a:")
@@ -57,5 +58,6 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
         
         
