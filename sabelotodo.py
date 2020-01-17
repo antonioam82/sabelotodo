@@ -38,9 +38,9 @@ def habla(t):
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             #ERROR DE DESAMBIGUACION
-            print("********DESAMBIGUACIÓN********")
             posibles_temas = wikipedia.search(t)
             if len(posibles_temas)>0:
+                print("********DESAMBIGUACIÓN********")
                 print(t,"puede referirse a:")
                 for i,posible_tema in enumerate(posibles_temas):
                     print(i,posible_tema)
