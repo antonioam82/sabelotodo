@@ -4,7 +4,8 @@ import re
 import platform
 from VALID import ns, direc, OKI
 s = platform.system()
-if s == "Windows":
+audio = ns(input("¿Activar audio?: "))
+if s == "Windows" and audio == "s":
     import win32com.client as wc
     speak=wc.Dispatch("Sapi.SpVoice")
 
@@ -21,12 +22,13 @@ def habla(t):
                 text = re.sub("\[\d+\]","",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
                 text = re.sub("\[cita requerida\]","",text)
-                try:
-                    speak.Speak(text)
-                except:
-                    print("SONIDO NO DISPONIBLE")
+                if audio == "s":
+                    try:
+                        speak.Speak(text)
+                    except:
+                        print("SONIDO NO DISPONIBLE")
                 #GUARDA AUDIO
-                aud = ns(input("¿Descargar audio?: ")).lower()
+                aud = ns(input("¿Descargar un audio?: ")).lower()
                 if aud == "s":
                     direc()
                     nom = t+".mp3"
