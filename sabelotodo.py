@@ -5,7 +5,7 @@ import platform
 from VALID import ns, direc, OKI
 s = platform.system()
 
-audio = ns(input("¿Activar audio?: "))
+audio = ns(input("¿Activar audio?: ").lower())
 if s == "Windows" and audio == "s":
     import win32com.client as wc
     speak=wc.Dispatch("Sapi.SpVoice")
@@ -48,10 +48,12 @@ def habla(t):
                 print(t,"puede referirse a:")
                 for i,posible_tema in enumerate(posibles_temas):
                     print(i,posible_tema)
-                eleccion = OKI(input("Introduzca numero correspondiente a su opción: "))
+                eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
                 if eleccion <= (len(posibles_temas)-1):
                     assert eleccion in range(len(posibles_temas))
                     habla(posibles_temas[eleccion])
+                else:
+                    print("VALOR DE ENTRADA INCORRECTO")
             
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
