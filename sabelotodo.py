@@ -5,10 +5,11 @@ import platform
 from VALID import ns, direc, OKI
 s = platform.system()
 
-audio = ns(input("¿Activar audio?: ").lower())
-if s == "Windows" and audio == "s":
-    import win32com.client as wc
-    speak=wc.Dispatch("Sapi.SpVoice")
+if s == "Windows":
+    audio = ns(input("¿Activar audio?: ").lower())
+    if audio == "s":
+        import win32com.client as wc
+        speak=wc.Dispatch("Sapi.SpVoice")
 
 wikipedia.set_lang('es')
 
