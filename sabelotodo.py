@@ -4,6 +4,7 @@ import re
 import platform
 from VALID import ns, direc, OKI
 s = platform.system()
+
 audio = ns(input("¿Activar audio?: "))
 if s == "Windows" and audio == "s":
     import win32com.client as wc
@@ -16,6 +17,7 @@ def habla(t):
         try:
             #REPRODUCE AUDIO
             if t!="":
+                print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
                 print("\n"+summ+"\n")
@@ -60,6 +62,7 @@ while True:
     conti = ns(input("¿Continuar?: "))
     if conti == "n":
         break
+        
         
         
         
