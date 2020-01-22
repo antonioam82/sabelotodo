@@ -28,10 +28,10 @@ def desamb(tem):
         print(tem,"puede referirse a:")
         for i,posible_tema in enumerate(posibles_temas):
             print(i,posible_tema)
-    eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
-    if eleccion <= (len(posibles_temas)-1):
-        assert eleccion in range(len(posibles_temas))
-        habla(posibles_temas[eleccion])
+        eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
+        if eleccion <= (len(posibles_temas)-1):
+            assert eleccion in range(len(posibles_temas))
+            habla(posibles_temas[eleccion])
     else:
         print("VALOR DE ENTRADA INCORRECTO")
     
@@ -72,7 +72,6 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
-        
         
         
         
