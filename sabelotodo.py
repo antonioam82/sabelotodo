@@ -32,8 +32,8 @@ def desamb(tem):
         if eleccion <= (len(posibles_temas)-1):
             assert eleccion in range(len(posibles_temas))
             habla(posibles_temas[eleccion])
-    else:
-        print("VALOR DE ENTRADA INCORRECTO")
+        else:
+            print("VALOR DE ENTRADA INCORRECTO")
     
 def habla(t):
     if t!="":
