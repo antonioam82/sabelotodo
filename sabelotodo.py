@@ -13,6 +13,28 @@ if s == "Windows":
 
 wikipedia.set_lang('es')
 
+def crea_audio(ti,te):
+    direc()
+    nom = ti+".mp3"
+    print("Generando archivo", nom)
+    tts = gTTS(te, lang='es')
+    tts.save(nom)
+    print("Generado archivo", nom)
+
+def desamb(tem):
+    posibles_temas = wikipedia.search(tem)
+    if len(posibles_temas)>1:
+        print("********DESAMBIGUACIÓN********")
+        print(tem,"puede referirse a:")
+        for i,posible_tema in enumerate(posibles_temas):
+            print(i,posible_tema)
+    eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
+    if eleccion <= (len(posibles_temas)-1):
+        assert eleccion in range(len(posibles_temas))
+        habla(posibles_temas[eleccion])
+    else:
+        print("VALOR DE ENTRADA INCORRECTO")
+    
 def habla(t):
     if t!="":
         try:
@@ -33,29 +55,12 @@ def habla(t):
                 #GUARDA AUDIO
                 aud = ns(input("¿Descargar un audio?: ")).lower()
                 if aud == "s":
-                    direc()
-                    nom = t+".mp3"
-                    print("Generando archivo", nom)
-                    tts = gTTS(text, lang='es')
-                    tts.save(nom)
-                    print("Generado archivo", nom)
+                    crea_audio(t,text)
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             #ERROR DE DESAMBIGUACION
-            posibles_temas = wikipedia.search(t)
-            if len(posibles_temas)>1:
-                print("********DESAMBIGUACIÓN********")
-                print(t,"puede referirse a:")
-                for i,posible_tema in enumerate(posibles_temas):
-                    print(i,posible_tema)
-                eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
-                if eleccion <= (len(posibles_temas)-1):
-                    assert eleccion in range(len(posibles_temas))
-                    habla(posibles_temas[eleccion])
-                else:
-                    print("VALOR DE ENTRADA INCORRECTO")
-            
+            desamb(t)
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
         
@@ -67,6 +72,7 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
+        
         
         
         
