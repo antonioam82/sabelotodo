@@ -15,7 +15,8 @@ if s == "Windows":
 #DETECTA IDIOMA DEL SISTEMA.
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
-#print(idioma_local)
+
+#IDIOMA PÁGINAS.
 try:
     wikipedia.set_lang(idioma_local)
 except:
