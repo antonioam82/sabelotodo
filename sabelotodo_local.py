@@ -15,7 +15,11 @@ if s == "Windows":
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 #print(idioma_local)
-wikipedia.set_lang(idioma_local)
+try:
+    wikipedia.set_lang(idioma_local)
+except:
+    idioma_local='en'
+    wikipedia.set_lang(idioma_local)
 
 
 def crea_audio(ti,te):
@@ -50,7 +54,6 @@ def habla(t):
                 summ = pagina.summary
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
                 text = re.sub("\[cita requerida\]","",text)
                 if audio == "s":
                     try:
@@ -74,6 +77,3 @@ while True:
     if tema == ".":
         break
     habla(tema)
-    #conti = ns(input("¿Continuar?: "))
-    #if conti == "n":
-        #break
