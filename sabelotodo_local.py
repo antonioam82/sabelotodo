@@ -12,6 +12,7 @@ if s == "Windows":
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
 
+#DETECTA IDIOMA DEL SISTEMA.
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 #print(idioma_local)
