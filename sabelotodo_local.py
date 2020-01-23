@@ -21,7 +21,6 @@ except:
     idioma_local='en'
     wikipedia.set_lang(idioma_local)
 
-
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
