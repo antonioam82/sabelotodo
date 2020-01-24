@@ -11,15 +11,14 @@ if s == "Windows":
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
 
-idioma = input("Introduce Idioma del texto: ")
-wikipedia.set_lang(idioma)
+wikipedia.set_lang('es')
 
 
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
     print("Generando archivo", nom)
-    tts = gTTS(te, lang=idioma)
+    tts = gTTS(te, lang='es')
     tts.save(nom)
     print("Generado archivo", nom)
 
@@ -74,6 +73,5 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
-        
         
         
