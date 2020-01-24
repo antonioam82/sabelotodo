@@ -3,7 +3,12 @@ from gtts import gTTS
 import re
 from VALID import ns, direc, OKI
 
-idioma = input("Seleccione idioma: ")
+def busca_idioma(i):
+    while not i in wikipedia.languages():
+        i = input("Input no válido: ")
+    return i
+
+idioma = busca_idioma(input("Seleccione idioma: "))
 wikipedia.set_lang(idioma)
 
 
@@ -58,3 +63,4 @@ while True:
     if tema == ".":
         break
     habla(tema)
+        
