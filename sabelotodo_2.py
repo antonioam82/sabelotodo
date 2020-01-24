@@ -8,10 +8,6 @@ def busca_idioma(i):
         i = input("Input no válido: ")
     return i
 
-idioma = busca_idioma(input("Seleccione idioma: "))
-wikipedia.set_lang(idioma)
-
-
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
@@ -57,10 +53,13 @@ def habla(t):
             desamb(t)
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
+
+        
+idioma = busca_idioma(input("Seleccione idioma: "))
+wikipedia.set_lang(idioma)
         
 while True:
     tema = input("Introduce tema: ")
     if tema == ".":
         break
     habla(tema)
-        
