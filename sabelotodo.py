@@ -13,7 +13,6 @@ if s == "Windows":
 
 wikipedia.set_lang('es')
 
-
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
