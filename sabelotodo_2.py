@@ -38,6 +38,7 @@ def habla(t):
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
+                print("\n"+pagina.title+"\n")
                 print("\n"+summ+"\n")
                 #GUARDA AUDIO
                 aud = ns(input("¿Descargar un audio?: ")).lower()
