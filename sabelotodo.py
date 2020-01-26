@@ -44,6 +44,7 @@ def habla(t):
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
+                print("\n"+pagina.title+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
