@@ -12,16 +12,15 @@ if s == "Windows":
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
 
-#DETECTA IDIOMA DEL SISTEMA.
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
-
-#IDIOMA PÁGINAS.
+#print(idioma_local)
 try:
     wikipedia.set_lang(idioma_local)
 except:
     idioma_local='en'
     wikipedia.set_lang(idioma_local)
+
 
 def crea_audio(ti,te):
     direc()
@@ -53,8 +52,10 @@ def habla(t):
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
+                print("\n"+pagina.title+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
                 text = re.sub("\[cita requerida\]","",text)
                 if audio == "s":
                     try:
@@ -78,3 +79,7 @@ while True:
     if tema == ".":
         break
     habla(tema)
+    #conti = ns(input("¿Continuar?: "))
+    #if conti == "n":
+        #break
+        
