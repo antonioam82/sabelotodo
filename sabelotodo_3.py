@@ -70,7 +70,7 @@ wikipedia.set_lang(idioma)
 
 while True:
     tema = input("Introduce tema: ")
-    print("ESCOJA OPCIÓN")
+    print("ESCOJA OPCIÓN DE CONTENIDO.")
     
     if tema == ".":
         break
