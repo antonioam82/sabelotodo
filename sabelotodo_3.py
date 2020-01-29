@@ -43,13 +43,11 @@ def habla(t):
             #REPRODUCE AUDIO
             if t!="":
                 ele_con = enum(lista_exren)
-                print(ele_con)
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 if ele_con == "RESUMEN":
                     summ = pagina.summary
                 else:
-                    print("fff")
                     summ = pagina.content
                 print("\n"+(pagina.title).upper()+"\n")
                 print("\n"+summ+"\n")
