@@ -1,0 +1,79 @@
+import wikipedia
+from gtts import gTTS
+import re
+from VALID import ns, direc, OKI
+
+lista_exren = ["RESUMEN","TEXTO COMPLETO"]
+
+def busca_idioma(i):
+    while not i in wikipedia.languages():
+        i = input("Input no válido: ")
+    return i
+
+def enum(opcions):
+    for i,opcion in enumerate(opcions):
+        print(i,opcion)
+    eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
+    while eleccion > (len(opcions)-1):
+        eleccion = OKI(input("Introduzca indice válido correspondiente a su opción: "))
+    assert eleccion in range(len(opcions))
+    tex_elec = opcions[eleccion]
+    return tex_elec
+    
+
+def crea_audio(ti,te):
+    direc()
+    nom = ti+".mp3"
+    print("Generando archivo", nom)
+    tts = gTTS(te, lang=idioma)
+    tts.save(nom)
+    print("Generado archivo", nom)
+
+def desamb(tem):
+    posibles_temas = wikipedia.search(tem)
+    if len(posibles_temas)>1:
+        print("********DESAMBIGUACIÓN********")
+        print(tem,"puede referirse a:")
+        ele_tema = enum(posibles_temas)
+        habla(ele_tema)
+    
+def habla(t):
+    if t!="":
+        try:
+            #REPRODUCE AUDIO
+            if t!="":
+                ele_con = enum(lista_exren)
+                print(ele_con)
+                print("ACCEDIENDO...")
+                pagina = wikipedia.page(t)
+                if ele_con == "RESUMEN":
+                    summ = pagina.summary
+                else:
+                    print("fff")
+                    summ = pagina.content
+                print("\n"+(pagina.title).upper()+"\n")
+                print("\n"+summ+"\n")
+                #GUARDA AUDIO
+                aud = ns(input("¿Descargar un audio?: ")).lower()
+                if aud == "s":
+                    text = re.sub("\[\d+\]","",summ)
+                    text = re.sub("\[cita requerida\]","",text)
+                    crea_audio(t,text)
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        except:
+            print("NO SE PUDO COMPLETAR LA ACCIÓN")
+            #ERROR DE DESAMBIGUACION
+            desamb(t)
+    else:
+        print("INTRODUZCA TEMA DE BÚSQUEDA")
+
+idioma = busca_idioma(input("Seleccione idioma: "))
+wikipedia.set_lang(idioma)        
+
+while True:
+    tema = input("Introduce tema: ")
+    print("ESCOJA OPCIÓN")
+    
+    if tema == ".":
+        break
+    habla(tema)
