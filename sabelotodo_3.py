@@ -32,7 +32,7 @@ def crea_audio(ti,te):
 
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
-    if len(posibles_temas)>1:
+    if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
         print(tem,"puede referirse a:")
         ele_tema = enum(posibles_temas)
