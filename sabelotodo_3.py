@@ -4,6 +4,7 @@ import re
 from VALID import ns, direc, OKI
 
 lista_exren = ["RESUMEN","TEXTO COMPLETO"]
+ele_con="RESUMEN"
 
 def busca_idioma(i):
     while not i in wikipedia.languages():
@@ -42,7 +43,7 @@ def habla(t):
         try:
             #REPRODUCE AUDIO
             if t!="":
-                ele_con = enum(lista_exren)
+                
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 if ele_con == "RESUMEN":
@@ -70,7 +71,10 @@ wikipedia.set_lang(idioma)
 
 while True:
     tema = input("Introduce tema: ")
+
     if tema == ".":
         break
     print("ESCOJA OPCIÓN DE CONTENIDO.")
+    ele_con = enum(lista_exren)
+    
     habla(tema)
