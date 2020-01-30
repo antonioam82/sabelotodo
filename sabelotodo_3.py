@@ -44,7 +44,6 @@ def desamb(tem):
 def habla(t):
     if t!="":
         try:
-            #REPRODUCE AUDIO
             if t!="":
                 pagina = wikipedia.page(t)
                 print("ESCOJA OPCIÓN DE CONTENIDO.")
