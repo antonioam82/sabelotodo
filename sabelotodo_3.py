@@ -44,6 +44,7 @@ def desamb(tem):
 def habla(t):
     if t!="":
         try:
+            #REPRODUCE AUDIO
             if t!="":
                 pagina = wikipedia.page(t)
                 print("ESCOJA OPCIÓN DE CONTENIDO.")
@@ -60,6 +61,7 @@ def habla(t):
                 if aud == "s":
                     text = re.sub("\[\d+\]","",summ)
                     text = re.sub("\[cita requerida\]","",text)
+                    text = re.sub("\[==\]","",text)
                     crea_audio(t,text)
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
