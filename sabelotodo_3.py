@@ -7,9 +7,12 @@ lista_exren = ["RESUMEN","TEXTO COMPLETO"]
 ele_con="RESUMEN"
 
 def busca_idioma(i):
-    while not i in wikipedia.languages():
-        i = input("Input no válido: ")
-    return i
+    try:
+        while not i in wikipedia.languages():
+            i = input("Input no válido: ")
+        return i
+    except:
+        print("MALA CONEXIÓN.")
 
 def enum(opcions):
     for i,opcion in enumerate(opcions):
@@ -43,9 +46,10 @@ def habla(t):
         try:
             #REPRODUCE AUDIO
             if t!="":
-                
-                print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
+                print("ESCOJA OPCIÓN DE CONTENIDO.")
+                ele_con = enum(lista_exren)
+                print("ACCEDIENDO...")
                 if ele_con == "RESUMEN":
                     summ = pagina.summary
                 else:
@@ -71,10 +75,7 @@ wikipedia.set_lang(idioma)
 
 while True:
     tema = input("Introduce tema: ")
-
     if tema == ".":
         break
-    print("ESCOJA OPCIÓN DE CONTENIDO.")
-    ele_con = enum(lista_exren)
-    
+
     habla(tema)
