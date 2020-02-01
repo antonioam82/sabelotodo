@@ -4,7 +4,7 @@ import re
 import platform
 from locale import getdefaultlocale
 from VALID import ns, direc, OKI
-
+idioma = "es"
 audio = "n"
 s = platform.system()
 
@@ -27,7 +27,7 @@ def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
     print("Generando archivo", nom)
-    tts = gTTS(te, lang='es')
+    tts = gTTS(te, lang=idioma)
     tts.save(nom)
     print("Generado archivo", nom)
 
