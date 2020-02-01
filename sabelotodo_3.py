@@ -42,6 +42,7 @@ def desamb(tem):
         habla(ele_tema)
     
 def habla(t):
+    contenido = ""
     if t!="":
         try:
             #REPRODUCE AUDIO
@@ -52,17 +53,24 @@ def habla(t):
                 print("ACCEDIENDO...")
                 if ele_con == "RESUMEN":
                     summ = pagina.summary
+                    for i in summ:
+                        contenido = contenido+i
                 else:
                     summ = pagina.content
                 print("\n"+(pagina.title).upper()+"\n")
                 print("\n"+summ+"\n")
                 #GUARDA AUDIO
-                aud = ns(input("¿Descargar un audio?: ")).lower()
-                if aud == "s":
+                fil = ns(input("¿Descargar artículo?: ")).lower()
+                if fil == "s":
                     text = re.sub("\[\d+\]","",summ)
                     text = re.sub("\[cita requerida\]","",text)
                     text = re.sub("\[==\]","",text)
-                    crea_audio(t,text)
+                    print("TIPO DE ARCHIVO")
+                    tip = enum(["ARCHIVO DE TEXTO","ARCHIVO DE AUDIO"])
+                    if tip == "ARCHIVO DE TEXTO":
+                        print("ACCIÓN AUN NO DISPONIBLE")
+                    else:
+                        crea_audio(t,text)
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
