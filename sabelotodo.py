@@ -4,7 +4,7 @@ import re
 import platform
 from locale import getdefaultlocale
 from VALID import ns, direc, OKI
-idioma = "es"
+
 audio = "n"
 s = platform.system()
 
