@@ -1,3 +1,6 @@
+# /usr/bin/env python
+# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 import wikipedia
 from gtts import gTTS
 import re
