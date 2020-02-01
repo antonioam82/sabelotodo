@@ -7,7 +7,6 @@ import re
 from VALID import ns, direc, OKI
 
 lista_exren = ["RESUMEN","TEXTO COMPLETO"]
-ele_con="RESUMEN"
 
 def busca_idioma(i):
     try:
