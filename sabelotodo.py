@@ -2,16 +2,27 @@ import wikipedia
 from gtts import gTTS
 import re
 import platform
+from locale import getdefaultlocale
 from VALID import ns, direc, OKI
+
 s = platform.system()
 
-if s == "Windows":
-    audio = ns(input("¿Activar audio?: ").lower())
-    if audio == "s":
-        import win32com.client as wc
-        speak=wc.Dispatch("Sapi.SpVoice")
+i,s = getdefaultlocale()
+idioma_local = (i.split("_"))[0]
 
-wikipedia.set_lang('es')
+def busca_idioma(i):
+    try:
+        while not i in wikipedia.languages():
+            i = input("Input no válido: ")
+            
+        return i
+    except:
+        print("MALA CONEXIÓN.")
+
+
+
+#wikipedia.set_lang('es')
+
 
 def crea_audio(ti,te):
     direc()
@@ -23,7 +34,7 @@ def crea_audio(ti,te):
 
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
-    if len(posibles_temas)>0:
+    if len(posibles_temas)>1:
         print("********DESAMBIGUACIÓN********")
         print(tem,"puede referirse a:")
         for i,posible_tema in enumerate(posibles_temas):
@@ -33,7 +44,7 @@ def desamb(tem):
             assert eleccion in range(len(posibles_temas))
             habla(posibles_temas[eleccion])
         else:
-            print("VALOR DE ENTRADA INCORRECTO.")
+            print("VALOR DE ENTRADA INCORRECTO")
     
 def habla(t):
     if t!="":
@@ -43,7 +54,7 @@ def habla(t):
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
                 summ = pagina.summary
-                print("\n"+pagina.title+"\n")
+                print("\n"+(pagina.title).upper()+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
@@ -64,7 +75,16 @@ def habla(t):
             desamb(t)
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
-        
+
+idioma = busca_idioma(input("Seleccione idioma: "))
+wikipedia.set_lang(idioma)
+
+if s == "cp1252" and idioma == idioma_local:
+    audio = ns(input("¿Activar audio?: ").lower())
+    if audio == "s":
+        import win32com.client as wc
+        speak=wc.Dispatch("Sapi.SpVoice")
+
 while True:
     tema = input("Introduce tema: ")
     if tema == ".":
