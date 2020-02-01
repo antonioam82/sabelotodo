@@ -19,11 +19,6 @@ def busca_idioma(i):
     except:
         print("MALA CONEXIÓN.")
 
-
-
-#wikipedia.set_lang('es')
-
-
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
