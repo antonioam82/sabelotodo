@@ -5,6 +5,7 @@ import platform
 from locale import getdefaultlocale
 from VALID import ns, direc, OKI
 
+audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
@@ -18,6 +19,9 @@ def busca_idioma(i):
         return i
     except:
         print("MALA CONEXIÓN.")
+
+#wikipedia.set_lang('es')
+
 
 def crea_audio(ti,te):
     direc()
