@@ -22,6 +22,17 @@ def busca_idioma(i):
 
 #wikipedia.set_lang('es')
 
+def enum(opcions):
+    for i,opcion in enumerate(opcions):
+        print(i,opcion)
+    eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
+    while eleccion > (len(opcions)-1):
+        eleccion = OKI(input("Introduzca indice válido correspondiente a su opción: "))
+    assert eleccion in range(len(opcions))
+    tex_elec = opcions[eleccion]
+    return tex_elec
+    
+
 
 def crea_audio(ti,te):
     direc()
@@ -33,18 +44,12 @@ def crea_audio(ti,te):
 
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
-    if len(posibles_temas)>1:
+    if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
         print(tem,"puede referirse a:")
-        for i,posible_tema in enumerate(posibles_temas):
-            print(i,posible_tema)
-        eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
-        if eleccion <= (len(posibles_temas)-1):
-            assert eleccion in range(len(posibles_temas))
-            habla(posibles_temas[eleccion])
-        else:
-            print("VALOR DE ENTRADA INCORRECTO")
-    
+        ele_tema = enum(posibles_temas)
+        habla(ele_tema)
+
 def habla(t):
     if t!="":
         try:
