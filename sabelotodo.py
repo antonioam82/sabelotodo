@@ -57,8 +57,14 @@ def habla(t):
             if t!="":
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
-                summ = pagina.summary
-                print("\n"+(pagina.title).upper()+"\n")
+                print("ESCOJA OPCIÓN DE CONTENIDO.")
+                ele_con = enum(["RESUMEN","TEXTO COMPLETO"])
+                if ele_con == "RESUMEN":
+                    summ = pagina.summary
+                else:
+                    summ = pagina.content
+                titulo = pagina.title.upper()
+                print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
                 #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
@@ -71,7 +77,7 @@ def habla(t):
                 #GUARDA AUDIO
                 aud = ns(input("¿Descargar un audio?: ")).lower()
                 if aud == "s":
-                    crea_audio(t,text)
+                    crea_audio(titulo,text)
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
@@ -97,5 +103,7 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
+        
+
         
         
