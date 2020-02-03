@@ -63,6 +63,8 @@ def habla(t):
                     summ = pagina.summary
                 else:
                     summ = pagina.content
+                global titulo
+                global text
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
@@ -74,11 +76,6 @@ def habla(t):
                         speak.Speak(text)
                     except:
                         print("SONIDO NO DISPONIBLE")
-                #GUARDA AUDIO
-                aud = ns(input("¿Descargar un audio?: ")).lower()
-                if aud == "s":
-                    crea_audio(titulo,text)
-                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             #ERROR DE DESAMBIGUACION
@@ -100,6 +97,10 @@ while True:
     if tema == ".":
         break
     habla(tema)
+    aud = ns(input("¿Descargar un audio?: ")).lower()
+    if audio == "s":
+        crea_audio(titulo,text)
+    print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
