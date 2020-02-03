@@ -23,6 +23,7 @@ def busca_idioma(i):
 #wikipedia.set_lang('es')
 
 def enum(opcions):
+    global fail
     for i,opcion in enumerate(opcions):
         print(i,opcion)
     eleccion = OKI(input("Introduzca número correspondiente a su opción: "))
@@ -30,6 +31,7 @@ def enum(opcions):
         eleccion = OKI(input("Introduzca indice válido correspondiente a su opción: "))
     assert eleccion in range(len(opcions))
     tex_elec = opcions[eleccion]
+    fail = False
     return tex_elec
     
 
@@ -43,6 +45,7 @@ def crea_audio(ti,te):
     print("Generado archivo", nom)
 
 def desamb(tem):
+    
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
@@ -65,6 +68,7 @@ def habla(t):
                     summ = pagina.content
                 global titulo
                 global text
+                global fail
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
@@ -78,6 +82,7 @@ def habla(t):
                         print("SONIDO NO DISPONIBLE")
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
+            fail = True
             #ERROR DE DESAMBIGUACION
             desamb(t)
     else:
@@ -97,10 +102,11 @@ while True:
     if tema == ".":
         break
     habla(tema)
-    aud = ns(input("¿Descargar un audio?: ")).lower()
-    if audio == "s":
-        crea_audio(titulo,text)
-    print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+    if fail == False:
+        aud = ns(input("¿Descargar un audio?: ")).lower()
+        if aud == "s":
+            crea_audio(titulo,text)
+        print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
