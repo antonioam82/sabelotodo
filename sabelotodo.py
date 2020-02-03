@@ -3,13 +3,35 @@ from gtts import gTTS
 import re
 import platform
 from locale import getdefaultlocale
-from VALID import ns, direc, OKI
+#from VALID import ns, direc, OKI
 
 audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
+
+def OKI(n):
+    try:
+        n=int(n)
+    except:
+        n=OKI(input("Caracter no valido: "))
+    return n
+
+def direc():
+    import os
+    while True:
+        nueva_ruta=input("Introduzca ruta: ")
+        if os.path.isdir(nueva_ruta):
+            os.chdir(nueva_ruta)
+            break
+        else:
+            print("RUTA NO VALIDA")
+
+def ns(c):
+    while c!=("s") and c!=("n"):
+        print(chr(7));c=input("Escribe solo \'n\' o \'s\' según su opción: ")
+    return(c)
 
 def busca_idioma(i):
     try:
@@ -110,7 +132,6 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
-        
 
         
         
