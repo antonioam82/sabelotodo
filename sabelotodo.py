@@ -42,8 +42,6 @@ def busca_idioma(i):
     except:
         print("MALA CONEXIÓN.")
 
-#wikipedia.set_lang('es')
-
 def enum(opcions):
     global fail
     for i,opcion in enumerate(opcions):
@@ -56,8 +54,6 @@ def enum(opcions):
     fail = False
     return tex_elec
     
-
-
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
@@ -78,7 +74,6 @@ def desamb(tem):
 def habla(t):
     if t!="":
         try:
-            #REPRODUCE AUDIO
             if t!="":
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
