@@ -91,6 +91,7 @@ def habla(t):
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
                 text = re.sub("\[cita requerida\]","",text)
+                #REPRODUCE AUDIO
                 if audio == "s":
                     try:
                         speak.Speak(text)
