@@ -71,7 +71,7 @@ def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
-        print(tem,"puede referirse a:")
+        print("'\'"+tem+"'\' puede referirse a:")
         ele_tema = enum(posibles_temas)
         habla(ele_tema)
 
@@ -95,7 +95,6 @@ def habla(t):
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
                 text = re.sub("\[cita requerida\]","",text)
                 if audio == "s":
                     try:
@@ -132,6 +131,7 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
+        
 
         
         
