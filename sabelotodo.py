@@ -37,10 +37,9 @@ def busca_idioma(i):
     try:
         while not i in wikipedia.languages():
             i = input("Input no válido: ")
-            
         return i
     except:
-        print("MALA CONEXIÓN.")
+        print("FALLO AL ESTABLECER EL IDIOMA")
 
 def enum(opcions):
     global fail
@@ -106,7 +105,10 @@ def habla(t):
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
 idioma = busca_idioma(input("Seleccione idioma: "))
-wikipedia.set_lang(idioma)
+if idioma == None:
+    wikipedia.set_lang(idioma_local)
+else:
+    wikipedia.set_lang(idioma)
 
 if s == "cp1252" and idioma == idioma_local:
     audio = ns(input("¿Activar audio?: ").lower())
@@ -124,9 +126,7 @@ while True:
         if aud == "s":
             crea_audio(titulo,text)
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
-    #conti = ns(input("¿Continuar?: "))
-    #if conti == "n":
-        #break
+        
         
 
         
