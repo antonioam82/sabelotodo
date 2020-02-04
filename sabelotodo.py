@@ -76,7 +76,6 @@ def desamb(tem):
 def habla(t):
     if t!="":
         try:
-            #REPRODUCE AUDIO
             if t!="":
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
@@ -93,8 +92,8 @@ def habla(t):
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
                 text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("km²","kilometros cuadrados",text)\[cita requerida\]
                 text = re.sub("\[cita requerida\]","",text)
+                #REPRODUCE AUDIO
                 if audio == "s":
                     try:
                         speak.Speak(text)
