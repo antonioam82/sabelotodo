@@ -120,7 +120,7 @@ if s == "cp1252" and idioma == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 while True:
-    tema = input("Introduce tema: ")
+    tema = input("\nIntroduce tema: ")
     if tema == ".":
         break
     habla(tema)
