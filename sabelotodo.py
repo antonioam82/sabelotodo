@@ -11,6 +11,8 @@ s = platform.system()
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 
+expre = ["\[cita requerida\]","\[\d+\]","===","=="]
+
 def OKI(n):
     try:
         n=int(n)
@@ -90,8 +92,9 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
-                text = re.sub("\[\d+\]","",summ)
-                text = re.sub("\[cita requerida\]","",text)
+                text = summ
+                for i in expre:
+                    text = re.sub(i,"",text)
                 #REPRODUCE AUDIO
                 if audio == "s":
                     try:
