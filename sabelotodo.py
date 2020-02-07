@@ -5,7 +5,6 @@ import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
 
-#audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
@@ -126,7 +125,7 @@ if s == "cp1252" and idioma == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 while True:
-    tema = input("\nIntroduce tema: ")
+    tema = input("\nIntroducir término de busqueda: ")
     if tema == ".":
         break
     habla(tema)
