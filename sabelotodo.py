@@ -5,12 +5,14 @@ import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
 
+#audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 
 expre = ["\[cita requerida\]","\[\d+\]","===","=="]
+opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO"]
 
 def OKI(n):
     try:
@@ -66,6 +68,7 @@ def crea_audio(ti,te):
     print("Generado archivo", nom)
 
 def desamb(tem):
+    
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
@@ -76,6 +79,7 @@ def desamb(tem):
 def habla(t):
     if t!="":
         try:
+            #REPRODUCE AUDIO
             if t!="":
                 print("ACCEDIENDO...")
                 pagina = wikipedia.page(t)
@@ -91,10 +95,11 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
+                #text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
-                #REPRODUCE AUDIO
                 if audio == "s":
                     try:
                         speak.Speak(text)
@@ -126,8 +131,9 @@ while True:
         break
     habla(tema)
     if fail == False:
-        aud = ns(input("¿Descargar un audio?: ")).lower()
-        if aud == "s":
+        print("**¿GUARDAR?**")
+        aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+        if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
