@@ -93,8 +93,6 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
-                #text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
@@ -127,16 +125,13 @@ while True:
         break
     habla(tema)
     if fail == False:
-        print("**¿GUARDAR?**")
-        aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+        print("**OPCIONES **")
+        aud = enum(opcion_cont)
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
             print("ACCIÓN AÚN NO DISPONIBLE")
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
-    #conti = ns(input("¿Continuar?: "))
-    #if conti == "n":
-        #break
         
         
         
