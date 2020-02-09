@@ -125,7 +125,7 @@ while True:
         break
     habla(tema)
     if fail == False:
-        print("**OPCIONES **")
+        print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
