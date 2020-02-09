@@ -17,7 +17,7 @@ def OKI(n):
     try:
         n=int(n)
     except:
-        n=OKI(input("Caracter no valido: "))
+        n=OKI(input("Caracter no válido: "))
     return n
 
 def direc():
@@ -113,7 +113,7 @@ else:
     wikipedia.set_lang(idioma)
 
 if s == "cp1252" and idioma == idioma_local:
-    audio = ns(input("¿Activar audio?: ").lower())
+    audio = ns(input("¿Activar audio?(n/s): ").lower())
     if audio == "s":
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
@@ -125,7 +125,7 @@ while True:
     habla(tema)
     if fail == False:
         print("****OPCIONES DE GUARDADO****")
-        aud = enum(opcion_cont)
+        aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
