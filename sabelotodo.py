@@ -5,13 +5,14 @@ import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
 
+#audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 
 expre = ["\[cita requerida\]","\[\d+\]","===","=="]
-opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO"]
+opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO","GUARDAR ARCHIVO DE TEXTO"]
 
 def OKI(n):
     try:
@@ -67,7 +68,6 @@ def crea_audio(ti,te):
     print("Generado archivo", nom)
 
 def desamb(tem):
-    
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         print("********DESAMBIGUACIÓN********")
@@ -93,15 +93,14 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
+                #text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
                 if audio == "s":
                     #REPRODUCE AUDIO
-                    try:
-                        speak.Speak(text)
-                    except:
-                        print("SONIDO NO DISPONIBLE")
+                    speak.Speak(text)
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             fail = True
@@ -132,7 +131,13 @@ while True:
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
+        elif aud == "GUARDAR ARCHIVO DE TEXTO":
+            print("ACCIÓN AÚN NO DISPONIBLE")
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+    #conti = ns(input("¿Continuar?: "))
+    #if conti == "n":
+        #break
+        
         
         
 
