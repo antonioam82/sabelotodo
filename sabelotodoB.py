@@ -114,8 +114,8 @@ def habla(t):
 print("****OPCIONES DE IDIOMA****")
 idioma = enum(["ESPAÑOL","INGLÉS","FRANCÉS","ALEMÁN","OTRO"])#busca_idioma(input("Seleccione idioma: "))
 
-if idioma == 4:
-    idioma_text = busca_idioma
+if idioma == "OTRO":
+    idioma_text = busca_idioma()
 else:
     idioma_text = idiomas[idioma]
     
@@ -146,3 +146,4 @@ while True:
     #conti = ns(input("¿Continuar?: "))
     #if conti == "n":
         #break
+        
