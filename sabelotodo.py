@@ -5,6 +5,7 @@ import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
 
+audio = "n"
 s = platform.system()
 
 i,s = getdefaultlocale()
