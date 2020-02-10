@@ -95,8 +95,6 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
-                #text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
@@ -111,7 +109,7 @@ def habla(t):
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
-print("****OPCIONES DE IDIOMA****")
+print("**************OPCIONES DE IDIOMA**************")
 idioma = enum(["ESPAÑOL","INGLÉS","FRANCÉS","ALEMÁN","OTRO"])#busca_idioma(input("Seleccione idioma: "))
 
 if idioma == "OTRO":
@@ -143,7 +141,4 @@ while True:
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
             print("ACCIÓN AÚN NO DISPONIBLE")
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
-    #conti = ns(input("¿Continuar?: "))
-    #if conti == "n":
-        #break
         
