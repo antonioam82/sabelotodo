@@ -61,7 +61,7 @@ def enum(opcions):
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
-    print("Generando archivo", nom)
+    print("Generando archivo",nom)
     if idioma == None:
         tts = gTTS(te, lang=idioma_local)
     else:
@@ -69,6 +69,19 @@ def crea_audio(ti,te):
     tts.save(nom)
     print("Generado archivo", nom)
 
+def crea_documento(tit,te):
+    direc()
+    nom = tit+".txt"
+    documento=open(nom,"w")
+    linea=""
+    for c in te:
+        linea=linea+c
+        if len(linea)==90:
+            documento.write(linea+"\n")
+            linea=""
+    documento.close()
+    print("Generado archivo",nom)
+            
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
@@ -95,6 +108,8 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
+                #text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
@@ -139,14 +154,7 @@ while True:
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
-            direc()
-            linea=""
-            documento=open(titulo+".txt","w")
-            for c in text:
-                linea=linea+c
-                if len(linea)==90:
-                    documento.write(linea+"\n")
-                    linea=""
-            documento.close()
+            crea_documento(titulo,text)
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        
         
