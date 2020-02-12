@@ -95,6 +95,8 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
+                #text = re.sub("\[\d+\]","",summ)
+                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
@@ -139,6 +141,14 @@ while True:
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
-            print("ACCIÓN AÚN NO DISPONIBLE")
+            direc()
+            linea=""
+            documento=open(titulo+".txt","w")
+            for c in text:
+                linea=linea+c
+                if len(linea)==90:
+                    documento.write(linea+"\n")
+                    linea=""
+            documento.close()
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
