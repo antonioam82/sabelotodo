@@ -79,9 +79,11 @@ def crea_documento(tit,te):
         if len(linea)==90:
             documento.write(linea+"\n")
             linea=""
+    documento.write(linea)#LINEA FINAL
     documento.close()
     print("Generado archivo",nom)
             
+
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
