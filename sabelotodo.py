@@ -59,13 +59,16 @@ def enum(opcions):
 def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
-    print("Generando archivo", nom)
-    if idioma == None:
-        tts = gTTS(te, lang=idioma_local)
-    else:
-        tts = gTTS(te, lang=idioma)
-    tts.save(nom)
-    print("Generado archivo", nom)
+    print("Generando archivo",nom)
+    try:
+        if idioma == None:
+            tts = gTTS(te, lang=idioma_local)
+        else:
+            tts = gTTS(te, lang=idioma_text)
+        tts.save(nom)
+        print("Generado archivo", nom)
+    except:
+        print("IDIOMA NO SOPORTADO")
 
 def crea_documento(tit,te):
     direc()
@@ -77,7 +80,7 @@ def crea_documento(tit,te):
         if len(linea)==90:
             documento.write(linea+"\n")
             linea=""
-    documento.write(linea)#LINEA FINAL
+    documento.write(linea)#FINAL
     documento.close()
     print("Generado archivo",nom)
 
