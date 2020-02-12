@@ -67,6 +67,19 @@ def crea_audio(ti,te):
     tts.save(nom)
     print("Generado archivo", nom)
 
+def crea_documento(tit,te):
+    direc()
+    nom = tit+".txt"
+    documento=open(nom,"w",encoding="utf-8")
+    linea=""
+    for c in te:
+        linea=linea+c
+        if len(linea)==90:
+            documento.write(linea+"\n")
+            linea=""
+    documento.close()
+    print("Generado archivo",nom)
+
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
@@ -130,7 +143,7 @@ while True:
         if aud == "GUARDAR UN AUDIO":
             crea_audio(titulo,text)
         elif aud == "GUARDAR ARCHIVO DE TEXTO":
-            print("ACCIÓN AÚN NO DISPONIBLE")
+            crea_documento(titulo,text)
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         
