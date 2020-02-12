@@ -62,12 +62,15 @@ def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
     print("Generando archivo",nom)
-    if idioma == None:
-        tts = gTTS(te, lang=idioma_local)
-    else:
-        tts = gTTS(te, lang=idioma_text)
-    tts.save(nom)
-    print("Generado archivo", nom)
+    try:
+        if idioma == None:
+            tts = gTTS(te, lang=idioma_local)
+        else:
+            tts = gTTS(te, lang=idioma_text)
+        tts.save(nom)
+        print("Generado archivo", nom)
+    except:
+        print("IDIOMA NO SOPORTADO")
 
 def crea_documento(tit,te):
     direc()
