@@ -150,10 +150,11 @@ while True:
     if fail == False and tema != "":
         print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        try:
-            genera_archivo(titulo,text,aud)
-        except:
-            print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+        if aud != "NO GUARDAR":
+            try:
+                genera_archivo(titulo,text,aud)
+            except:
+                print("NO SE PUDO COMPLETAR LA OPERACIÓN")
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         
