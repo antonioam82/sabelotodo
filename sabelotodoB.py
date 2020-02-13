@@ -160,7 +160,7 @@ while True:
     if tema == ".":
         break
     habla(tema)
-    if fail == False:
+    if fail == False and tema != "":
         print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
         try:
