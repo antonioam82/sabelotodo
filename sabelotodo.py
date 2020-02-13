@@ -64,11 +64,17 @@ def crea_audio(ti,te):
         if idioma == None:
             tts = gTTS(te, lang=idioma_local)
         else:
-            tts = gTTS(te, lang=idioma_text)
+            tts = gTTS(te, lang=idioma)
         tts.save(nom)
         print("Generado archivo", nom)
     except:
         print("IDIOMA NO SOPORTADO")
+
+def genera_archivo(ti,te,op):
+    if op == "GUARDAR UN AUDIO":
+        crea_audio(ti,te)
+    else:
+        crea_documento(ti,te)
 
 def crea_documento(tit,te):
     direc()
@@ -144,10 +150,10 @@ while True:
     if fail == False:
         print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        if aud == "GUARDAR UN AUDIO":
-            crea_audio(titulo,text)
-        elif aud == "GUARDAR ARCHIVO DE TEXTO":
-            crea_documento(titulo,text)
+        try:
+            genera_archivo(titulo,text,aud)
+        except:
+            print("NO SE PUDO COMPLETAR LA OPERACIÓN")
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         
