@@ -78,7 +78,6 @@ def genera_archivo(ti,te,op):
     else:
         crea_documento(ti,te)
     
-
 def crea_documento(tit,te):
     direc()
     nom = (tit+".txt")
@@ -93,7 +92,6 @@ def crea_documento(tit,te):
     documento.close()
     print("Generado archivo",nom)
             
-
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
