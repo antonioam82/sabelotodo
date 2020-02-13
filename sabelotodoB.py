@@ -78,6 +78,7 @@ def genera_archivo(ti,te,op):
     else:
         crea_documento(ti,te)
     
+
 def crea_documento(tit,te):
     direc()
     nom = (tit+".txt")
@@ -92,6 +93,7 @@ def crea_documento(tit,te):
     documento.close()
     print("Generado archivo",nom)
             
+
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
@@ -161,10 +163,11 @@ while True:
     if fail == False and tema != "":
         print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        try:
-            genera_archivo(titulo,text,aud)
-        except:
-            print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+        if aud != "NO GUARDAR":
+            try:
+                genera_archivo(titulo,text,aud)
+            except:
+                print("NO SE PUDO COMPLETAR LA OPERACIÓN")
                 
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
