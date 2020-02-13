@@ -77,7 +77,7 @@ def crea_documento(tit,te):
     linea=""
     for c in te:
         linea=linea+c
-        if len(linea)==110:
+        if len(linea)==90:
             documento.write(linea+"\n")
             linea=""
     documento.write(linea)#FINAL
