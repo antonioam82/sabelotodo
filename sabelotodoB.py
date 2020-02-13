@@ -72,9 +72,16 @@ def crea_audio(ti,te):
     except:
         print("IDIOMA NO SOPORTADO")
 
+def genera_archivo(ti,te,op):
+    if op == "GUARDAR UN AUDIO":
+        crea_audio(ti,te)
+    else:
+        crea_documento(ti,te)
+    
+
 def crea_documento(tit,te):
     direc()
-    nom = tit+".txt"
+    nom = (tit+".txt")
     documento=open(nom,"w",encoding="utf-8")
     linea=""
     for c in te:
@@ -156,10 +163,11 @@ while True:
     if fail == False:
         print("****OPCIONES DE GUARDADO****")
         aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        if aud == "GUARDAR UN AUDIO":
-            crea_audio(titulo,text)
-        elif aud == "GUARDAR ARCHIVO DE TEXTO":
-            crea_documento(titulo,text)
+        try:
+            genera_archivo(titulo,text,aud)
+        except:
+            print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+                
         print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         
