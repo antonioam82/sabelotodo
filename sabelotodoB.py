@@ -156,20 +156,23 @@ if s == "cp1252" and idioma_text == idioma_local:
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
 
-while True:
-    tema = input("\nIntroducir término de busqueda: ")
-    if tema == ".":
-        break
-    habla(tema)
-    if fail == False and tema != "":
-        print("****OPCIONES DE GUARDADO****")
-        aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        if aud != "NO GUARDAR":
-            try:
-                genera_archivo(titulo,text,aud)
-            except:
-                print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+def main_func():
+    while True:
+        tema = input("\nIntroducir término de busqueda: ")
+        if tema == ".":
+            break
+        habla(tema)
+        if fail == False and tema != "":
+            print("****OPCIONES DE GUARDADO****")
+            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+            if aud != "NO GUARDAR":
+                try:
+                    genera_archivo(titulo,text,aud)
+                except:
+                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
                 
-        print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
-        
+            print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+
+if __name__=="__main__":
+    main_func()
         
