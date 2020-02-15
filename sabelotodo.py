@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import wikipedia
 from gtts import gTTS
 import re
@@ -69,7 +68,7 @@ def crea_audio(ti,te):
         tts.save(nom)
         print("Generado archivo", nom)
     except:
-        print("NO SE PUDO COMPLETAR LA ACCIÓN")
+        print("IDIOMA NO SOPORTADO")
 
 def genera_archivo(ti,te,op):
     if op == "GUARDAR UN AUDIO":
@@ -143,21 +142,25 @@ if s == "cp1252" and idioma == idioma_local:
         import win32com.client as wc
         speak=wc.Dispatch("Sapi.SpVoice")
 
-while True:
-    tema = input("\nIntroducir término de busqueda: ")
-    if tema == ".":
-        break
-    habla(tema)
-    if fail == False and tema != "":
-        print("****OPCIONES DE GUARDADO****")
-        aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-        if aud != "NO GUARDAR":
-            try:
-                genera_archivo(titulo,text,aud)
-            except:
-                print("NO SE PUDO COMPLETAR LA OPERACIÓN")
-        print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
-        
+def main_func():
+    while True:
+        tema = input("\nIntroducir término de busqueda: ")
+        if tema == ".":
+            break
+        habla(tema)
+        if fail == False:
+            print("****OPCIONES DE GUARDADO****")
+            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+            if aud != "NO GUARDAR":
+                try:
+                    genera_archivo(titulo,text,aud)
+                except:
+                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+            print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+
+if __name__=="__main__":
+    main_func()
+
         
         
 
