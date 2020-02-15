@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import wikipedia
 from gtts import gTTS
 import re
