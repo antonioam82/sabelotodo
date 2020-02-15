@@ -69,7 +69,7 @@ def crea_audio(ti,te):
         tts.save(nom)
         print("Generado archivo", nom)
     except:
-        print("IDIOMA NO SOPORTADO")
+        print("NO SE PUDO COMPLETAR LA ACCIÓN")
 
 def genera_archivo(ti,te,op):
     if op == "GUARDAR UN AUDIO":
