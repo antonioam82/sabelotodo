@@ -16,6 +16,13 @@ expre = ["\[cita requerida\]","\[\d+\]","===","=="]
 opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO","GUARDAR ARCHIVO DE TEXTO"]
 idiomas = {"ESPAÑOL":"es","INGLÉS":"en","FRANCÉS":"fr","ALEMÁN":"de"}
 
+def titulo():
+    print("***********************************")
+    print("*                                 *")
+    print("*           SABELOTODO            *")
+    print("*                                 *")
+    print("***********************************")
+
 def OKI(n):
     try:
         n=int(n)
@@ -137,6 +144,7 @@ def habla(t):
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
+titulo()
 print("**************OPCIONES DE IDIOMA**************")
 idioma = enum(["ESPAÑOL","INGLÉS","FRANCÉS","ALEMÁN","OTRO"])#busca_idioma(input("Seleccione idioma: "))
 
