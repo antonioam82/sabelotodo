@@ -14,6 +14,13 @@ idioma_local = (i.split("_"))[0]
 expre = ["\[cita requerida\]","\[\d+\]","===","=="]
 opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO","GUARDAR ARCHIVO DE TEXTO"]
 
+def titulo():
+    print("***********************************")
+    print("*                                 *")
+    print("*           SABELOTODO            *")
+    print("*                                 *")
+    print("***********************************")
+
 def OKI(n):
     try:
         n=int(n)
@@ -130,6 +137,7 @@ def habla(t):
     else:
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
+titulo()
 idioma = busca_idioma(input("Seleccione idioma: "))
 if idioma == None:
     wikipedia.set_lang(idioma_local)
@@ -143,6 +151,7 @@ if s == "cp1252" and idioma == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 def main_func():
+    
     while True:
         tema = input("\nIntroducir término de busqueda: ")
         if tema == ".":
@@ -160,7 +169,6 @@ def main_func():
 
 if __name__=="__main__":
     main_func()
-
         
         
 
