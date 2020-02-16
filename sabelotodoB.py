@@ -17,11 +17,11 @@ opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO","GUARDAR ARCHIVO DE TEXTO"]
 idiomas = {"ESPAÑOL":"es","INGLÉS":"en","FRANCÉS":"fr","ALEMÁN":"de"}
 
 def titulo():
-    print("***********************************")
-    print("*                                 *")
-    print("*           SABELOTODO            *")
-    print("*                                 *")
-    print("***********************************")
+    print("**********************************************")
+    print("*                                            *")
+    print("*                 SABELOTODO                 *")
+    print("*                                            *")
+    print("**********************************************")
 
 def OKI(n):
     try:
