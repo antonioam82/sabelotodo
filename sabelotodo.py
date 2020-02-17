@@ -5,6 +5,7 @@ import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
 
+alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
 
@@ -98,12 +99,19 @@ def crea_documento(tit,te):
     print("Generado archivo",nom)
 
 def desamb(tem):
+    global fail
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
+        if not alter in posibles_temas:
+            posibles_temas.append(alter)
         print("********DESAMBIGUACIÓN********")
         print("'\'"+tem+"'\' puede referirse a:")
         ele_tema = enum(posibles_temas)
-        habla(ele_tema)
+        if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
+            habla(ele_tema)
+        else:
+            fail=True
+            main_func()
 
 def habla(t):
     if t!="":
@@ -151,7 +159,6 @@ if s == "cp1252" and idioma == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 def main_func():
-    
     while True:
         tema = input("\nIntroducir término de busqueda: ")
         if tema == ".":
@@ -169,7 +176,6 @@ def main_func():
 
 if __name__=="__main__":
     main_func()
-        
         
 
         
