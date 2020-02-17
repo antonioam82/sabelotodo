@@ -175,19 +175,16 @@ def main_func():
             break
         else:
             habla(tema)
-        
-        if fail == False and tema != "":
-            print(tema)
-            print(fail)
-            print("****OPCIONES DE GUARDADO****")
-            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-            if aud != "NO GUARDAR":
-                try:
-                    genera_archivo(titulo,text,aud)
-                except:
-                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+            if fail == False and tema != "" and tema != ".":
+                print("****OPCIONES DE GUARDADO****")
+                aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+                if aud != "NO GUARDAR":
+                    try:
+                        genera_archivo(titulo,text,aud)
+                    except:
+                        print("NO SE PUDO COMPLETAR LA OPERACIÓN")
                 
-            print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
 
 if __name__=="__main__":
     main_func()
