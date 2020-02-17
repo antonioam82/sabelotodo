@@ -5,6 +5,7 @@ import re
 import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
+
 alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
@@ -70,15 +71,12 @@ def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
     print("Generando archivo",nom)
-    try:
-        if idioma == None:
-            tts = gTTS(te, lang=idioma_local)
-        else:
-            tts = gTTS(te, lang=idioma_text)
-        tts.save(nom)
+    if idioma == None:
+        tts = gTTS(te, lang=idioma_local)
+    else:
+        tts = gTTS(te, lang=idioma_text)
+    tts.save(nom)
         print("Generado archivo", nom)
-    except:
-        print("NO SE PUDO COMPLETAR LA ACCIÓN")
 
 def genera_archivo(ti,te,op):
     if op == "GUARDAR UN AUDIO":
