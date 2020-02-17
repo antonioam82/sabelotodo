@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import wikipedia
 from gtts import gTTS
 import re
@@ -15,20 +14,19 @@ idioma_local = (i.split("_"))[0]
 
 expre = ["\[cita requerida\]","\[\d+\]","===","=="]
 opcion_cont = ["NO GUARDAR","GUARDAR UN AUDIO","GUARDAR ARCHIVO DE TEXTO"]
-idiomas = {"ESPAÑOL":"es","INGLÉS":"en","FRANCÉS":"fr","ALEMÁN":"de"}
 
 def titulo():
-    print("**********************************************")
-    print("*                                            *")
-    print("*                 SABELOTODO                 *")
-    print("*                                            *")
-    print("**********************************************")
+    print("***********************************")
+    print("*                                 *")
+    print("*           SABELOTODO            *")
+    print("*                                 *")
+    print("***********************************")
 
 def OKI(n):
     try:
         n=int(n)
     except:
-        n=OKI(input("Caracter no valido: "))
+        n=OKI(input("Caracter no válido: "))
     return n
 
 def direc():
@@ -46,8 +44,7 @@ def ns(c):
         print(chr(7));c=input("Escribe solo \'n\' o \'s\' según su opción: ")
     return(c)
 
-def busca_idioma():
-    i = input("Introduce iniciales del idioma deseado (ej: \'es\',\'en\',\'fr\'...): ")
+def busca_idioma(i):
     try:
         while not i in wikipedia.languages():
             i = input("Input no válido: ")
@@ -71,23 +68,25 @@ def crea_audio(ti,te):
     direc()
     nom = ti+".mp3"
     print("Generando archivo",nom)
-    if idioma == None:
-        tts = gTTS(te, lang=idioma_local)
-    else:
-        tts = gTTS(te, lang=idioma_text)
-    tts.save(nom)
-    print("Generado archivo", nom)
+    try:
+        if idioma == None:
+            tts = gTTS(te, lang=idioma_local)
+        else:
+            tts = gTTS(te, lang=idioma)
+        tts.save(nom)
+        print("Generado archivo", nom)
+    except:
+        print("IDIOMA NO SOPORTADO")
 
 def genera_archivo(ti,te,op):
     if op == "GUARDAR UN AUDIO":
         crea_audio(ti,te)
     else:
         crea_documento(ti,te)
-    
 
 def crea_documento(tit,te):
     direc()
-    nom = (tit+".txt")
+    nom = tit+".txt"
     documento=open(nom,"w",encoding="utf-8")
     linea=""
     for c in te:
@@ -95,12 +94,12 @@ def crea_documento(tit,te):
         if len(linea)==90:
             documento.write(linea+"\n")
             linea=""
-    documento.write(linea)#LINEA FINAL
+    documento.write(linea)#FINAL
     documento.close()
     print("Generado archivo",nom)
-            
 
 def desamb(tem):
+    global fail
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         if not alter in posibles_temas:
@@ -115,31 +114,28 @@ def desamb(tem):
             main_func()
 
 def habla(t):
-    if t!="":
+    if t!="" and t!=".":
         try:
-            if t!="":
-                print("ACCEDIENDO...")
-                pagina = wikipedia.page(t)
-                print("ESCOJA OPCIÓN DE CONTENIDO.")
-                ele_con = enum(["RESUMEN","TEXTO COMPLETO"])
-                if ele_con == "RESUMEN":
-                    summ = pagina.summary
-                else:
-                    summ = pagina.content
-                global titulo
-                global text
-                global fail
-                titulo = pagina.title.upper()
-                print("\n"+titulo+"\n")
-                print("\n"+summ+"\n")
-                #text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("==","",summ)
-                text = summ
-                for i in expre:
-                    text = re.sub(i,"",text)
-                if audio == "s":
-                    #REPRODUCE AUDIO
-                    speak.Speak(text)
+            print("ACCEDIENDO...")
+            pagina = wikipedia.page(t)
+            print("ESCOJA OPCIÓN DE CONTENIDO.")
+            ele_con = enum(["RESUMEN","TEXTO COMPLETO"])
+            if ele_con == "RESUMEN":
+                summ = pagina.summary
+            else:
+                summ = pagina.content
+            global titulo
+            global text
+            global fail
+            titulo = pagina.title.upper()
+            print("\n"+titulo+"\n")
+            print("\n"+summ+"\n")
+            text = summ
+            for i in expre:
+                text = re.sub(i,"",text)
+            if audio == "s":
+                #REPRODUCE AUDIO
+                speak.Speak(text)
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             fail = True
@@ -149,21 +145,13 @@ def habla(t):
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
 titulo()
-
-print("**************OPCIONES DE IDIOMA**************")
-idioma = enum(["ESPAÑOL","INGLÉS","FRANCÉS","ALEMÁN","OTRO"])#busca_idioma(input("Seleccione idioma: "))
-
-if idioma == "OTRO":
-    idioma_text = busca_idioma()
-else:
-    idioma_text = idiomas[idioma]
-    
+idioma = busca_idioma(input("Seleccione idioma: "))
 if idioma == None:
     wikipedia.set_lang(idioma_local)
 else:
-    wikipedia.set_lang(idioma_text)
+    wikipedia.set_lang(idioma)
 
-if s == "cp1252" and idioma_text == idioma_local:
+if s == "cp1252" and idioma == idioma_local:
     audio = ns(input("¿Activar audio?(n/s): ").lower())
     if audio == "s":
         import win32com.client as wc
@@ -174,20 +162,19 @@ def main_func():
         tema = input("\nIntroducir término de busqueda: ")
         if tema == ".":
             break
-        habla(tema)
-        if fail == False and tema != "" and tema != ".":
-            print("****OPCIONES DE GUARDADO****")
-            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-            if aud != "NO GUARDAR":
-                try:
-                    genera_archivo(titulo,text,aud)
-                except:
-                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
-                
-            print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        else:
+            habla(tema)
+            if fail == False and tema != "" and tema != ".":
+                print("****OPCIONES DE GUARDADO****")
+                aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+                if aud != "NO GUARDAR":
+                    try:
+                        genera_archivo(titulo,text,aud)
+                    except:
+                        print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
 
 if __name__=="__main__":
     main_func()
-
         
         
