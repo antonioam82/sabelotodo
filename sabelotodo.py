@@ -164,7 +164,7 @@ def main_func():
         if tema == ".":
             break
         habla(tema)
-        if fail == False and tema != "": :
+        if fail == False and tema != "" and tema != ".":
             print("****OPCIONES DE GUARDADO****")
             aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
             if aud != "NO GUARDAR":
