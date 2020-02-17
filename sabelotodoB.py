@@ -5,7 +5,7 @@ import re
 import platform
 from locale import getdefaultlocale
 #from VALID import ns, direc, OKI
-
+alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
 
@@ -105,10 +105,15 @@ def crea_documento(tit,te):
 def desamb(tem):
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
+        if not alter in posibles_temas:
+            posibles_temas.append(alter)
         print("********DESAMBIGUACIÓN********")
         print("'\'"+tem+"'\' puede referirse a:")
         ele_tema = enum(posibles_temas)
-        habla(ele_tema)
+        if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
+            habla(ele_tema)
+        else:
+            main_func()
 
 def habla(t):
     if t!="":
@@ -128,8 +133,6 @@ def habla(t):
                 titulo = pagina.title.upper()
                 print("\n"+titulo+"\n")
                 print("\n"+summ+"\n")
-                #text = re.sub("\[\d+\]","",summ)
-                #text = re.sub("==","",summ)
                 text = summ
                 for i in expre:
                     text = re.sub(i,"",text)
@@ -145,6 +148,7 @@ def habla(t):
         print("INTRODUZCA TEMA DE BÚSQUEDA")
 
 titulo()
+
 print("**************OPCIONES DE IDIOMA**************")
 idioma = enum(["ESPAÑOL","INGLÉS","FRANCÉS","ALEMÁN","OTRO"])#busca_idioma(input("Seleccione idioma: "))
 
@@ -183,4 +187,3 @@ def main_func():
 
 if __name__=="__main__":
     main_func()
-        
