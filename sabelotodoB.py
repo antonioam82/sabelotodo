@@ -76,7 +76,7 @@ def crea_audio(ti,te):
     else:
         tts = gTTS(te, lang=idioma_text)
     tts.save(nom)
-        print("Generado archivo", nom)
+    print("Generado archivo", nom)
 
 def genera_archivo(ti,te,op):
     if op == "GUARDAR UN AUDIO":
@@ -101,6 +101,7 @@ def crea_documento(tit,te):
             
 
 def desamb(tem):
+    global fail
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         if not alter in posibles_temas:
@@ -111,32 +112,33 @@ def desamb(tem):
         if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
             habla(ele_tema)
         else:
+            fail=True
             main_func()
 
 def habla(t):
-    if t!="":
+    
+    if t!="" and t!=".":
         try:
-            if t!="":
-                print("ACCEDIENDO...")
-                pagina = wikipedia.page(t)
-                print("ESCOJA OPCIÓN DE CONTENIDO.")
-                ele_con = enum(["RESUMEN","TEXTO COMPLETO"])
-                if ele_con == "RESUMEN":
-                    summ = pagina.summary
-                else:
-                    summ = pagina.content
-                global titulo
-                global text
-                global fail
-                titulo = pagina.title.upper()
-                print("\n"+titulo+"\n")
-                print("\n"+summ+"\n")
-                text = summ
-                for i in expre:
-                    text = re.sub(i,"",text)
-                if audio == "s":
-                    #REPRODUCE AUDIO
-                    speak.Speak(text)
+            print("ACCEDIENDO...")
+            pagina = wikipedia.page(t)
+            print("ESCOJA OPCIÓN DE CONTENIDO.")
+            ele_con = enum(["RESUMEN","TEXTO COMPLETO"])
+            if ele_con == "RESUMEN":
+                summ = pagina.summary
+            else:
+                summ = pagina.content
+            global titulo
+            global text
+            global fail
+            titulo = pagina.title.upper()
+            print("\n"+titulo+"\n")
+            print("\n"+summ+"\n")
+            text = summ
+            for i in expre:
+                text = re.sub(i,"",text)
+            if audio == "s":
+                #REPRODUCE AUDIO
+                speak.Speak(text)
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             fail = True
@@ -171,8 +173,12 @@ def main_func():
         tema = input("\nIntroducir término de busqueda: ")
         if tema == ".":
             break
-        habla(tema)
+        else:
+            habla(tema)
+        
         if fail == False and tema != "":
+            print(tema)
+            print(fail)
             print("****OPCIONES DE GUARDADO****")
             aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
             if aud != "NO GUARDAR":
