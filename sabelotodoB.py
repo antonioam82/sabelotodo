@@ -9,7 +9,7 @@ from locale import getdefaultlocale
 alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
-
+desam = False
 i,s = getdefaultlocale()
 idioma_local = (i.split("_"))[0]
 
@@ -101,9 +101,10 @@ def crea_documento(tit,te):
             
 
 def desamb(tem):
-    global fail
+    global fail, desam
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
+        desam = True
         if not alter in posibles_temas:
             posibles_temas.append(alter)
         print("********DESAMBIGUACIÓN********")
@@ -138,6 +139,7 @@ def habla(t):
             if audio == "s":
                 #REPRODUCE AUDIO
                 speak.Speak(text)
+            
         except:
             print("NO SE PUDO COMPLETAR LA ACCIÓN")
             fail = True
@@ -168,6 +170,7 @@ if s == "cp1252" and idioma_text == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 def main_func():
+    global desam
     while True:
         tema = input("\nIntroducir término de busqueda: ")
         habla(tema)
@@ -179,8 +182,14 @@ def main_func():
                     genera_archivo(titulo,text,aud)
                 except:
                     print("NO SE PUDO COMPLETAR LA OPERACIÓN")
-            print(tema)       
-            print("\nARTÍCULOS RELACIONADOS: ",(wikipedia.search(tema))[:-1])
-
+            if desam == True:
+                #print("A")
+                print("\nARTÍCULOS RELACIONADOS: ",(wikipedia.search(tema))[:-1])
+            else:
+                #print("B")
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        
+        desam = False
+        
 if __name__=="__main__":
     main_func()
