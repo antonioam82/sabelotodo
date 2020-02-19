@@ -116,8 +116,7 @@ def desamb(tem):
             main_func()
 
 def habla(t):
-    
-    if t!="" and t!=".":
+    if t!="":
         try:
             print("ACCEDIENDO...")
             pagina = wikipedia.page(t)
@@ -171,20 +170,17 @@ if s == "cp1252" and idioma_text == idioma_local:
 def main_func():
     while True:
         tema = input("\nIntroducir término de busqueda: ")
-        if tema == ".":
-            break
-        else:
-            habla(tema)
-            if fail == False and tema != "" and tema != ".":
-                print("****OPCIONES DE GUARDADO****")
-                aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-                if aud != "NO GUARDAR":
-                    try:
-                        genera_archivo(titulo,text,aud)
-                    except:
-                        print("NO SE PUDO COMPLETAR LA OPERACIÓN")
-                
-                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        habla(tema)
+        if fail == False and tema != "":
+            print("****OPCIONES DE GUARDADO****")
+            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+            if aud != "NO GUARDAR":
+                try:
+                    genera_archivo(titulo,text,aud)
+                except:
+                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+            print(tema)       
+            print("\nARTÍCULOS RELACIONADOS: ",(wikipedia.search(tema))[:-1])
 
 if __name__=="__main__":
     main_func()
