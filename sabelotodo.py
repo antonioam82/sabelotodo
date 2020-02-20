@@ -189,7 +189,6 @@ def main_func():
             conti = ns(input("\n¿Desea continuar?(n/s): "))
             if conti == "n":
                 finaliza()
-                break
             
 if __name__=="__main__":
     main_func()
