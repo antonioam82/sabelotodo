@@ -163,25 +163,26 @@ def main_func():
     global desam
     while True:
         tema = input("\nIntroducir término de busqueda: ")
-        else:
-            habla(tema)
-            if fail == False and tema != "":
-                print("****OPCIONES DE GUARDADO****")
-                aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
-                if aud != "NO GUARDAR":
-                    try:
-                        genera_archivo(titulo,text,aud)
-                    except:
-                        print("NO SE PUDO COMPLETAR LA OPERACIÓN")
-                if desam == True:
-                    #print("A")
-                    print("\nARTÍCULOS RELACIONADOS: ",(wikipedia.search(tema))[:-1])
-                else:
-                    #print("B")
-                    print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
+        habla(tema)
+        if fail == False and tema != "":
+            print("****OPCIONES DE GUARDADO****")
+            aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
+            if aud != "NO GUARDAR":
+                try:
+                    genera_archivo(titulo,text,aud)
+                except:
+                    print("NO SE PUDO COMPLETAR LA OPERACIÓN")
+            if desam == True:
+                #print("A")
+                 print("\nARTÍCULOS RELACIONADOS: ",(wikipedia.search(tema))[:-1])
+            else:
+                #print("B")
+                print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
            
         desam = False
-        
+        conti = ns(input("¿Desea continuar?(n/s): "))
+        if conti == "n":
+            fail == True
+            break
 if __name__=="__main__":
     main_func()
-        
