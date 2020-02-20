@@ -6,7 +6,7 @@ import platform
 from locale import getdefaultlocale
 import sys, time
 #from VALID import ns, direc, OKI
- 
+fin = False 
 alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
@@ -105,7 +105,7 @@ def crea_documento(tit,te):
             
 
 def desamb(tem):
-    global fail, desam, fin
+    global fail, desam
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         desam = True
@@ -178,10 +178,10 @@ if s == "cp1252" and idioma_text == idioma_local:
 
 def main_func():
     global desam, fail
-    while True:
+    while fin == False:
         tema = input("\nIntroducir término de busqueda: ")
         habla(tema)
-        if fail == False and tema != "":
+        if fail == False and tema != "" and fin == False:
             print("****OPCIONES DE GUARDADO****")
             aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
             if aud != "NO GUARDAR":
@@ -197,11 +197,12 @@ def main_func():
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         desam = False
-        conti = ns(input("¿Desea continuar?(n/s): "))
-        if conti == "n":
-            fail == True
-            break
-           
+        if fin == False:
+            conti = ns(input("\n¿Desea continuar?(n/s): "))
+            if conti == "n":
+                finaliza()
+                break
+        
 if __name__=="__main__":
     main_func()
 
