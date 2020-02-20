@@ -190,6 +190,5 @@ def main_func():
             if conti == "n":
                 finaliza()
             
-if __name__=="__main__":
-    main_func()
+main_func()
 
