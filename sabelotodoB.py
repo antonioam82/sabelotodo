@@ -4,8 +4,8 @@ from gtts import gTTS
 import re
 import platform
 from locale import getdefaultlocale
-import sys, time
 #from VALID import ns, direc, OKI
+
 fin = False 
 alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
@@ -114,14 +114,11 @@ def desamb(tem):
         print("********DESAMBIGUACIÓN********")
         print("'\'"+tem+"'\' puede referirse a:")
         ele_tema = enum(posibles_temas)
-        if ele_tema!="SALIR":
-            if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
+        if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
                 habla(ele_tema) 
-            else:
-                fail=True
-                main_func()
         else:
-            fin = True
+            fail=True
+            main_func()
 
 def habla(t):
     if t!="":
@@ -205,5 +202,4 @@ def main_func():
         
 if __name__=="__main__":
     main_func()
-
 
