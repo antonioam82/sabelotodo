@@ -163,11 +163,9 @@ def main_func():
     global desam
     while True:
         tema = input("\nIntroducir término de busqueda: ")
-        if tema == ".":
-            break
         else:
             habla(tema)
-            if fail == False and tema != "" and tema != ".":
+            if fail == False and tema != "":
                 print("****OPCIONES DE GUARDADO****")
                 aud = enum(opcion_cont)#ns(input("¿Descargar un audio?: ")).lower()
                 if aud != "NO GUARDAR":
