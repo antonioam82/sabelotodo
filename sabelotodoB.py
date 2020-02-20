@@ -4,8 +4,9 @@ from gtts import gTTS
 import re
 import platform
 from locale import getdefaultlocale
+import sys, time
 #from VALID import ns, direc, OKI
-
+ 
 alter = "INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA"
 audio = "n"
 s = platform.system()
@@ -83,7 +84,10 @@ def genera_archivo(ti,te,op):
         crea_audio(ti,te)
     else:
         crea_documento(ti,te)
-    
+
+def finaliza():
+    global fin
+    fin = True
 
 def crea_documento(tit,te):
     direc()
@@ -101,7 +105,7 @@ def crea_documento(tit,te):
             
 
 def desamb(tem):
-    global fail, desam
+    global fail, desam, fin
     posibles_temas = wikipedia.search(tem)
     if len(posibles_temas)>0:
         desam = True
@@ -110,11 +114,14 @@ def desamb(tem):
         print("********DESAMBIGUACIÓN********")
         print("'\'"+tem+"'\' puede referirse a:")
         ele_tema = enum(posibles_temas)
-        if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
-            habla(ele_tema)
+        if ele_tema!="SALIR":
+            if ele_tema!="INTRODUCIR NUEVO TÉRMINO DE BÚSQUEDA":
+                habla(ele_tema) 
+            else:
+                fail=True
+                main_func()
         else:
-            fail=True
-            main_func()
+            fin = True
 
 def habla(t):
     if t!="":
@@ -170,7 +177,7 @@ if s == "cp1252" and idioma_text == idioma_local:
         speak=wc.Dispatch("Sapi.SpVoice")
 
 def main_func():
-    global desam
+    global desam, fail
     while True:
         tema = input("\nIntroducir término de busqueda: ")
         habla(tema)
@@ -190,6 +197,11 @@ def main_func():
                 print("\nARTÍCULOS RELACIONADOS: ",wikipedia.search(tema))
         
         desam = False
-        
+        conti = ns(input("¿Desea continuar?(n/s): "))
+        if conti == "n":
+            fail == True
+            break
 if __name__=="__main__":
     main_func()
+
+
