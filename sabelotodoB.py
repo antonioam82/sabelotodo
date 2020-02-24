@@ -4,6 +4,7 @@ from gtts import gTTS
 import re
 import platform
 from locale import getdefaultlocale
+import sys, time
 #from VALID import ns, direc, OKI
 
 fin = False 
@@ -29,7 +30,7 @@ def OKI(n):
     try:
         n=int(n)
     except:
-        n=OKI(input("Caracter no valido: "))
+        n=OKI(input("Caracter no válido: "))
     return n
 
 def direc():
@@ -94,6 +95,7 @@ def crea_documento(tit,te):
     nom = (tit+".txt")
     documento=open(nom,"w",encoding="utf-8")
     linea=""
+    documento.write(tit+"\n\n")
     for c in te:
         linea=linea+c
         if len(linea)==90:
@@ -198,5 +200,5 @@ def main_func():
             conti = ns(input("\n¿Desea continuar?(n/s): "))
             if conti == "n":
                 finaliza()
+                #break
 main_func()
-
