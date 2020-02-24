@@ -95,7 +95,7 @@ def crea_documento(tit,te):
     nom = (tit+".txt")
     documento=open(nom,"w",encoding="utf-8")
     linea=""
-    documento.write(tit+"\n\n")
+    documento.write("\n"+tit+"\n\n")
     for c in te:
         linea=linea+c
         if len(linea)==90:
@@ -202,3 +202,4 @@ def main_func():
                 finaliza()
                 #break
 main_func()
+
