@@ -94,6 +94,7 @@ def crea_documento(tit,te):
     direc()
     nom = tit+".txt"
     documento=open(nom,"w",encoding="utf-8")
+    documento.write("\n"+tit+"\n\n")
     linea=""
     for c in te:
         linea=linea+c
